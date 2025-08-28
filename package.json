@@ -1,0 +1,20 @@
+{
+  "name": "nuxt-app",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "https-proxy-agent": "^7.0.6",
+    "lru-cache": "^11.1.0",
+    "nuxt": "^4.0.3",
+    "undici": "^7.15.0",
+    "vue": "^3.5.20",
+    "vue-router": "^4.5.1"
+  }
+}
