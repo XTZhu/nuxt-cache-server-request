@@ -65,3 +65,22 @@ export function needCache(url: string, options: any): boolean {
 
   return true;
 }
+
+// 缓存统计信息
+export function getCacheStats() {
+  return {
+    size: cache.size,
+    max: cache.max,
+    ttl: cache.ttl,
+    maxSize: cache.maxSize,
+    // 注意：新版本的 LRU-cache 可能没有这些统计属性
+    // 如果需要统计信息，可以使用自定义计数器
+  };
+}
+
+// 清空缓存
+export function clearCache() {
+  cache.clear();
+  pending.clear();
+  console.log("🧹 缓存已清空");
+}
