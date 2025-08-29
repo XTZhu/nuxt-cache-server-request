@@ -1,4 +1,5 @@
 export const getUrl = (path: string) => {
+  // 修改为测试接口
   const baseUrl = process.env.BASE_URL || "http://localhost:5180";
   return `${baseUrl}${path}`;
 };
