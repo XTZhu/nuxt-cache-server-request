@@ -1,11 +1,15 @@
 <script setup>
-const { data: users } = await useFetch(API.users);
+const { data: users } = await useFetch(API.heroes);
 
-const { data: mage } = await useFetch(API.mage);
+const { data: mage } = await useFetch(API.mage, {
+  headers: {
+    skipCache: true,
+  },
+});
 
 const { data: tank } = await useFetch(API.tank, {
   headers: {
-    token: "abc",
+    Authorization: "abc",
   },
 });
 const { data: assassinBoo } = await useFetch(API.assassin, {
@@ -30,8 +34,17 @@ await useFetch(API.register, {
 const { data: update } = await useFetch(API.update, {
   method: "put",
 });
+
+// 会缓存的接口为
+// get /api/heroes
+// get /api/player/assassin
 </script>
 
 <template>
-  <div>{{ users }}</div>
+  <div>
+    <ul>
+      <NuxtLink to="/fetch-all">fetch-all</NuxtLink>
+    </ul>
+    <div>{{ users }}</div>
+  </div>
 </template>
