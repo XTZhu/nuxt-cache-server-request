@@ -31,7 +31,23 @@ export function generateCacheKey(url: string, options: any): string {
 }
 
 // LRU 缓存和并发锁
-export const cache = new LRUCache<string, any>({ max: 100, ttl: 1000 * 60 });
+export const cache = new LRUCache<string, any>({
+  max: 100,
+  ttl: 1000 * 60,
+  // 添加 maxSize 支持，需要同时设置 sizeCalculation
+  maxSize: 50 * 1024 * 1024, // 50MB 内存限制
+  sizeCalculation: (value, key) => {
+    try {
+      // 计算缓存项的大小（字节）
+      const size = JSON.stringify(value).length;
+      return size;
+    } catch (error) {
+      // 如果序列化失败，返回默认大小
+      console.warn(`无法计算缓存项大小: ${key}`, error);
+      return 1000; // 默认 1KB
+    }
+  },
+});
 export const pending = new Map<string, Promise<any>>();
 
 export function needCache(url: string, options: any): boolean {
