@@ -4,7 +4,7 @@ export const getUrl = (path: string) => {
 };
 
 export const API = {
-  users: getUrl("/api/users"),
+  heroes: getUrl("/api/heroes"),
   tank: getUrl("/api/player/tank"),
   mage: getUrl("/api/player/mage"),
   assassin: getUrl("/api/player/assassin"),
